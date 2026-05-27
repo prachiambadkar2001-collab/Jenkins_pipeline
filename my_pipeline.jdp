@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('PULL STAGE'){
             steps{
-                sh 'https://github.com/prachiambadkar2001-collab/Jenkins_pipeline.git'
+                git 'https://github.com/prachiambadkar2001-collab/Jenkins_pipeline.git'
 		echo "Pull success"
             }
         }
