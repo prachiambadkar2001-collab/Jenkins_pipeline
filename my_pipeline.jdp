@@ -36,8 +36,7 @@ pipeline {
                     '''
                 }
 		}
-                echo "Test success and added webhook as well"
-            }
+                echo "Test success and added webhook as well in automation"            }
         }
 
         stage('Deploy Stage') {
