@@ -1,37 +1,42 @@
 pipeline {
     agent any
-          
-	  environment {
+
+    environment {
         JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
     }
 
+    stages {
 
-    stages{
-        stage('PULL STAGE'){
-            steps{
+        stage('PULL STAGE') {
+            steps {
                 git 'https://github.com/prachiambadkar2001-collab/Jenkins_pipeline.git'
-		echo "Pull success"
+                echo "Pull success"
             }
-		}
-        stage('Build Stage'){
-            steps{
+        }
+
+        stage('Build Stage') {
+            steps {
+                sh 'mvn clean compile'
                 echo "Build success"
             }
         }
-        stage('Test STAGE'){
-            steps{
-	    withSonarQubeEnv('sonarqube') {
-	    mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=my-project-for-build-2 \
-            -Dsonar.projectName='my-project-for-build-2' \    
-	    }      
+
+        stage('Test STAGE') {
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh '''
+                        mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=my-project-for-build-2 \
+                        -Dsonar.projectName=my-project-for-build-2
+                    '''
+                }
                 echo "Test success"
-            
-	    }
+            }
         }
-        stage('Deploy Stage'){
-            steps{
+
+        stage('Deploy Stage') {
+            steps {
                 echo "Deploy success"
             }
         }
