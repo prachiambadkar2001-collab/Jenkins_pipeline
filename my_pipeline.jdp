@@ -35,6 +35,7 @@ pipeline {
                         -Dsonar.projectName=my-project-for-build-2
                     '''
                 }
+		}
                 echo "Test success"
             }
         }
