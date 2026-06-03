@@ -28,6 +28,7 @@ pipeline {
         stage('Test STAGE') {
             steps {
                 withSonarQubeEnv('sonarqube') {
+		dir('backend') {
                     sh '''
                         mvn sonar:sonar \
                         -Dsonar.projectKey=my-project-for-build-2 \
