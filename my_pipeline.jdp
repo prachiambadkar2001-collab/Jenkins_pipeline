@@ -36,7 +36,7 @@ pipeline {
                     '''
                 }
 		}
-                echo "Test success"
+                echo "Test success and added webhook as well"
             }
         }
 
