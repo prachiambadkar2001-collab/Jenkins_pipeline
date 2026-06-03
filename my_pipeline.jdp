@@ -21,11 +21,10 @@ pipeline {
         }
         stage('Test STAGE'){
             steps{
-	    withSonarQubeEnv(credentialsId: 'sonar-creds') {
+	    withSonarQubeEnv('sonarqube') {
 	    mvn clean verify sonar:sonar \
             -Dsonar.projectKey=my-project-for-build-2 \
             -Dsonar.projectName='my-project-for-build-2' \    
-            -Dsonar.host.url=http://3.226.221.191:9000 \
 	    }      
                 echo "Test success"
             
