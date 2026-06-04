@@ -36,19 +36,17 @@ pipeline {
                     '''
                 }
 		}
-                echo "Test success and added webhook as well in automation"            }
-        }
+                echo "Test success and added webhook as well in automation"  
+            }
 	}
 
 
         stage('Quality Gate') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonarqube') {
                 timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
                 echo "Quality Gate Success with webhook after git auto-push"
-                }
             }
         }
 
