@@ -38,6 +38,7 @@ pipeline {
 		}
                 echo "Test success and added webhook as well in automation"            }
         }
+	}
 
 
         stage('Quality Gate') {
