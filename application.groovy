@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                 cd frontend
-                docker build -t prachiambadkar2001-collab/easy-frontend:latest .
+                docker build -t prachiambadkar27/easy-frontend:latest .
                 '''
             }
         }
@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                 cd backend
-                docker build -t prachiambadkar2001-collab/easy-backend:latest .
+                docker build -t prachiambadkar27/easy-backend:latest .
                 '''
             }
         }
@@ -39,8 +39,8 @@ pipeline {
                     sh '''
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
-                    docker push prachiambadkar2001-collab/easy-frontend:latest
-                    docker push prachiambadkar2001-collab/easy-backend:latest
+                    docker push prachiambadkar27/easy-frontend:latest
+                    docker push prachiambadkar27/easy-backend:latest
 
                     docker logout
                     '''
@@ -51,8 +51,8 @@ pipeline {
         stage('DOCKER-CLEAN') {
             steps {
                 sh '''
-                docker rmi -f prachiambadkar2001-collab/easy-frontend:latest || true
-                docker rmi -f prachiambadkar2001-collab/easy-backend:latest || true
+                docker rmi -f prachiambadkar27/easy-frontend:latest || true
+                docker rmi -f prachiambadkar27/easy-backend:latest || true
                 '''
             }
         }
