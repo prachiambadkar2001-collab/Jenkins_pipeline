@@ -1,0 +1,42 @@
+pipeline {
+
+  agent any
+
+  environment{
+      JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+      PATH = "${JAVA_HOME}/bin:${env.PATH}"
+
+  }
+  
+
+  stages{
+    
+    stage('Pull Stage'){
+      steps{
+         git 'https://github.com/prachiambadkar2001-collab/Jenkins_pipeline.git'
+	 echo"pull success"
+     }
+
+    }
+
+  stage('Test/Plan Stage'){
+      steps{
+         
+         echo"Plan success"
+     }
+
+    }
+   
+   stage('Apply/Deploy Stage'){
+      steps{
+         
+         echo"Deploy success"
+     }
+
+    }
+
+
+  }
+
+
+}
