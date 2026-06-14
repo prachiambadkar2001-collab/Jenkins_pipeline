@@ -22,10 +22,12 @@ pipeline {
 
     stage('Test/Plan Stage'){
       steps{
-         sh '''sh\'terraform init -reconfigure\'
-                terraform plan\'
-         echo"Plan success"
+         sh '''
+	    terraform init -reconfigure
+            terraform plan
+
 	 '''
+	 echo "Plan success"
       }
 
     }
@@ -39,7 +41,7 @@ pipeline {
     }
 
     stage('Apply/Deploy Stage'){
-      steps{
+      steps {
          sh 'terraform apply --auto-approve'       
          echo"Deploy success"
       }  
