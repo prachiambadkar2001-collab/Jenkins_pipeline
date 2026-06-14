@@ -15,34 +15,35 @@ pipeline {
       steps{
          git 'https://github.com/prachiambadkar2001-collab/Jenkins_pipeline.git'
 	 echo"pull success"
-     }
-
+      }
+     
     }
 
-  stage('Test/Plan Stage'){
+
+    stage('Test/Plan Stage'){
       steps{
          sh'terraform init -reconfigure
                 terraform plan'
          echo"Plan success"
-     }
+      }
 
     }
    
-   stage('APPROVAL') {
-            steps {
-                timeout(time: 30, unit: 'MINUTES') {
-                    input message: 'Approval is required. Shall we proceed?, OK : "Approve"'
-                }
-            }
-   }
+    stage('APPROVAL') {
+      steps {
+        timeout(time: 30, unit: 'MINUTES') {
+          input message: 'Approval is required. Shall we proceed?, OK : "Approve"'
+        }
+      }
+    }
 
-   stage('Apply/Deploy Stage'){
+    stage('Apply/Deploy Stage'){
       steps{
          sh 'terraform apply --auto-approve'       
          echo"Deploy success"
-     }
-
+      }  
     }
+
 
 
   }
