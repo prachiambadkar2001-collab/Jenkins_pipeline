@@ -15,7 +15,7 @@ data "aws_vpc" "default" { // Fetch default VPC
 }
 variable "cluster_name" { // Variable for cluster name
   type    = string
-  default = "Prachi-cluster"
+  default = "my-cluster"
 
 }
 
@@ -75,7 +75,11 @@ resource "aws_eks_cluster" "mycluster" {       // EKS Cluster resource
   role_arn = aws_iam_role.eks_cluster_role.arn // IAM role for the cluster
 
   vpc_config {
-    subnet_ids = data.aws_subnets.default.ids // Use all subnets in the default VPC
+    subnet_ids = [
+      "subnet-00a1be2a4211e5282",
+      "subnet-01ce1271f0c9ac5bc",
+      "subnet-049364bc8c4b0b4b4"
+    ]
   }
 
   depends_on = [
