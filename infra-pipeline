@@ -22,9 +22,10 @@ pipeline {
 
     stage('Test/Plan Stage'){
       steps{
-         sh'terraform init -reconfigure
-                terraform plan'
+         sh '''sh\'terraform init -reconfigure\'
+                terraform plan\'
          echo"Plan success"
+	 '''
       }
 
     }
