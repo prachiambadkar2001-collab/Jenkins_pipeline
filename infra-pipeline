@@ -21,15 +21,24 @@ pipeline {
 
   stage('Test/Plan Stage'){
       steps{
-         
+         sh'terraform init -reconfigure
+                terraform plan'
          echo"Plan success"
      }
 
     }
    
+   stage('APPROVAL') {
+            steps {
+                timeout(time: 30, unit: 'MINUTES') {
+                    input message: 'Approval is required. Shall we proceed?, OK : "Approve"'
+                }
+            }
+   }
+
    stage('Apply/Deploy Stage'){
       steps{
-         
+         sh 'terraform apply --auto-approve'       
          echo"Deploy success"
      }
 
